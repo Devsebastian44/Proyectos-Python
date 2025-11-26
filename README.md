@@ -1,7 +1,6 @@
 ## Proyectos en Python
 
-Este repositorio contiene una colección de proyectos desarrollados en **Python**.  
-Cada proyecto incluye su propio **README** explicando qué es y para qué funciona el código.
+Este repositorio contiene una colección de proyectos desarrollados en **Python**. Cada proyecto incluye su propio **README** explicando qué es y para qué funciona el código.
 
 ---
 
@@ -63,5 +62,4 @@ python3 antivirus.py
 
 ## 📜 Licencia
 
-Este repositorio está bajo la licencia MIT.  
-Puedes usarlo libremente con fines educativos y de investigación.
+Este repositorio está bajo la licencia MIT. Puedes usarlo libremente con fines educativos y de investigación.
