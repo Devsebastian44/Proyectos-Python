@@ -7,6 +7,7 @@
 ![Code Style](https://img.shields.io/badge/Code%20Style-flake8-7c3aed?style=flat)
 ![CI/CD](https://img.shields.io/badge/CI%2FCD-GitLab%20Pipelines-FC6D26?style=flat&logo=gitlab&logoColor=white)
 
+---
 
 ## 🧠 Overview
 
