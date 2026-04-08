@@ -18,8 +18,9 @@ before_script:
 linting:
   stage: lint
   script:
-    - pip install flake8
-    - flake8 src/ tests/
+    - pip install ruff
+    - ruff check src/ tests/
+    - ruff format --check src/ tests/
 
 unit_tests:
   stage: test
@@ -30,5 +31,6 @@ unit_tests:
 sast:
   stage: security
   script:
-    - pip install bandit
-    - bandit -r src/ -ll -ii
+    - pip install ruff pip-audit
+    - ruff check --select S src/ tests/
+    - if [ -f requirements.txt ]; then pip-audit -r requirements.txt; fi
