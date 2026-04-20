@@ -14,7 +14,7 @@ def modify_file_time(path: str, date_str: str):
 
     try:
         # Convert string to epoch time
-        dt = datetime.strptime(date_str, '%Y-%m-%d %H:%M:%S')
+        dt = datetime.strptime(date_str, "%Y-%m-%d %H:%M:%S")
         epoch = time.mktime(dt.timetuple())
 
         # Update times

@@ -1,14 +1,21 @@
-import mysql.connector
 import os
-from typing import List, Any
+from typing import Any, List
+
+import mysql.connector
 
 
 class DatabaseConnector:
     """
     Handles database connections and queries.
     """
-    def __init__(self, host: str = None, user: str = None,
-                 password: str = None, database: str = None):
+
+    def __init__(
+        self,
+        host: str = None,
+        user: str = None,
+        password: str = None,
+        database: str = None,
+    ):
         # Use env vars or defaults (WARNING: Defaults are for dev only)
         self.host = host or os.getenv("DB_HOST", "mysql-5707.dinaserver.com")
         self.user = user or os.getenv("DB_USER", "mouredev_read")
@@ -23,7 +30,7 @@ class DatabaseConnector:
                 host=self.host,
                 user=self.user,
                 password=self.password,
-                database=self.database
+                database=self.database,
             )
             print(f"Connected to {self.database} at {self.host}")
         except mysql.connector.Error as err:

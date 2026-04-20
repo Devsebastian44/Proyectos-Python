@@ -1,15 +1,14 @@
-import string
 import secrets
-
+import string
 
 try:
     from ..utils.config import Colors
 except ImportError:
     # Fallback if run directly without package context
     class Colors:
-        GREEN = '\033[32m'
-        RESET = '\033[39m'
-        HEADER = '\033[95m'
+        GREEN = "\033[32m"
+        RESET = "\033[39m"
+        HEADER = "\033[95m"
 
 
 def generate_password(length: int = 16, use_symbols: bool = True) -> str:
@@ -27,14 +26,14 @@ def generate_password(length: int = 16, use_symbols: bool = True) -> str:
     if use_symbols:
         characters += "[]{}()*;/,._-!$%?@#"
 
-    password = ''.join(secrets.choice(characters) for _ in range(length))
+    password = "".join(secrets.choice(characters) for _ in range(length))
     return password
 
 
 def save_password(password: str, file_path: str = "clave.key") -> None:
     """Saves the password to a file."""
     try:
-        with open(file_path, 'w') as file:
+        with open(file_path, "w") as file:
             file.write(password)
         print(f"{Colors.GREEN}Password saved to {file_path}{Colors.RESET}")
     except IOError as e:
@@ -55,5 +54,5 @@ if __name__ == "__main__":
     print(f"\nGenerated Password: {Colors.GREEN}{pwd}{Colors.RESET}")
 
     save = input("Save to file 'clave.key'? (y/n): ").lower()
-    if save == 'y':
+    if save == "y":
         save_password(pwd)

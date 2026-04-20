@@ -1,10 +1,10 @@
 import unittest
 from pathlib import Path
-from sysadmin_utils.security import password_manager, hash_utils
+
+from sysadmin_utils.security import hash_utils, password_manager
 
 
 class TestSecurity(unittest.TestCase):
-
     def test_password_length(self):
         """Test that the generated password has the correct length."""
         pwd = password_manager.generate_password(length=20)
@@ -36,5 +36,5 @@ class TestSecurity(unittest.TestCase):
                 tmp_path.unlink()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

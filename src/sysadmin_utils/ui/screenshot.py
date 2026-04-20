@@ -1,6 +1,7 @@
-import pyautogui
 import time
 from pathlib import Path
+
+import pyautogui
 
 
 def take_screenshot(output_path: str):

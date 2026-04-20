@@ -1,44 +1,55 @@
 import argparse
-import sys
 from pathlib import Path
+
+from sysadmin_utils.data import file_search
+from sysadmin_utils.network import (
+    active_connections,
+    connectivity,
+    downloader,
+    samba_enum,
+    traffic_monitor,
+)
+from sysadmin_utils.network.ftp import FTPClient
+from sysadmin_utils.security import hash_utils, malware_scanner, password_manager
+from sysadmin_utils.system import formatting
+from sysadmin_utils.ui import screenshot
 
 # flake8: noqa: E402
 from sysadmin_utils.utils.config import APP_NAME, VERSION, Colors
-from sysadmin_utils.security import password_manager, malware_scanner, hash_utils
-from sysadmin_utils.network import traffic_monitor, connectivity, active_connections, \
-    downloader, samba_enum
-from sysadmin_utils.network.ftp import FTPClient
-from sysadmin_utils.system import formatting
-from sysadmin_utils.data import file_search
-from sysadmin_utils.ui import screenshot
 
 
 def main():
     parser = argparse.ArgumentParser(
-        description=f"{APP_NAME} - System Administration Utilities")
+        description=f"{APP_NAME} - System Administration Utilities"
+    )
     parser.add_argument("--version", action="version", version=f"{APP_NAME} {VERSION}")
 
     subparsers = parser.add_subparsers(dest="command", help="Available commands")
 
     # Password Generator
-    pwd_parser = subparsers.add_parser(
-        "gen-pass", help="Generate a secure password")
+    pwd_parser = subparsers.add_parser("gen-pass", help="Generate a secure password")
     pwd_parser.add_argument(
-        "-l", "--length", type=int, default=16, help="Password length")
+        "-l", "--length", type=int, default=16, help="Password length"
+    )
     pwd_parser.add_argument("--no-symbols", action="store_true", help="Exclude symbols")
 
     # Malware Scanner
     scan_parser = subparsers.add_parser(
-        "scan-malware", help="Scan a directory for malware")
+        "scan-malware", help="Scan a directory for malware"
+    )
     scan_parser.add_argument("path", help="Path to scan")
 
     # Hash Check
-    hash_parser = subparsers.add_parser("hash-check", help="Calculate or check file hash")
+    hash_parser = subparsers.add_parser(
+        "hash-check", help="Calculate or check file hash"
+    )
     hash_parser.add_argument("path", help="File to check")
 
     # Network Tools
     net_parser = subparsers.add_parser("net-monitor", help="Monitor network traffic")
-    net_parser.add_argument("-d", "--delay", type=float, default=1.0, help="Update delay")
+    net_parser.add_argument(
+        "-d", "--delay", type=float, default=1.0, help="Update delay"
+    )
 
     subparsers.add_parser("check-internet", help="Check internet connectivity")
     subparsers.add_parser("list-connections", help="List active network connections")
@@ -53,7 +64,9 @@ def main():
     # File Tools
     org_parser = subparsers.add_parser("organize", help="Organize files by extension")
     org_parser.add_argument("path", help="Directory to organize")
-    org_parser.add_argument("-w", "--watch", action="store_true", help="Watch directory")
+    org_parser.add_argument(
+        "-w", "--watch", action="store_true", help="Watch directory"
+    )
 
     search_parser = subparsers.add_parser("search", help="Search for files")
     search_parser.add_argument("path", help="Directory to search")
@@ -64,7 +77,9 @@ def main():
     screen_parser.add_argument("output", help="Output file path")
 
     ftp_parser = subparsers.add_parser("ftp", help="FTP Client Operations")
-    ftp_parser.add_argument("action", choices=["list", "upload", "download"], help="Action to perform")
+    ftp_parser.add_argument(
+        "action", choices=["list", "upload", "download"], help="Action to perform"
+    )
     ftp_parser.add_argument("--host", required=True, help="FTP Host")
     ftp_parser.add_argument("--user", required=True, help="FTP User")
     ftp_parser.add_argument("--password", required=True, help="FTP Password")
@@ -90,7 +105,7 @@ def main():
 
     elif args.command == "check-internet":
         print("Checking connectivity...")
-        if hasattr(connectivity, 'test_internet_connection'):
+        if hasattr(connectivity, "test_internet_connection"):
             connectivity.test_internet_connection()
         else:
             print("Connectivity module not fully compatible.")

@@ -1,16 +1,16 @@
 import hashlib
 from pathlib import Path
 
-
 try:
     from ..utils.config import Colors
 except ImportError:
+
     class Colors:
-        BLUE = '\033[34m'
-        RESET = '\033[39m'
-        HEADER = '\033[95m'
-        RED = '\033[91m'
-        GREEN = '\033[32m'
+        BLUE = "\033[34m"
+        RESET = "\033[39m"
+        HEADER = "\033[95m"
+        RED = "\033[91m"
+        GREEN = "\033[32m"
 
 
 def calculate_file_hash(file_path: Path, algorithm: str = "sha256") -> str:
@@ -38,7 +38,7 @@ def compare_hash_with_list(file_hash: str, hash_list_path: Path) -> bool:
         return False
 
     try:
-        with open(hash_list_path, 'r') as f:
+        with open(hash_list_path, "r") as f:
             known_hashes = {line.strip() for line in f}
 
         return file_hash in known_hashes
@@ -63,7 +63,9 @@ def interactive_check():
     computed_hash = calculate_file_hash(path)
     print(f"\n{Colors.HEADER}SHA-256:{Colors.RESET} {computed_hash}")
 
-    hash_db_input = input("Enter path to hash database (optional, press Enter to skip): ").strip()
+    hash_db_input = input(
+        "Enter path to hash database (optional, press Enter to skip): "
+    ).strip()
     if hash_db_input:
         db_path = Path(hash_db_input)
         if compare_hash_with_list(computed_hash, db_path):

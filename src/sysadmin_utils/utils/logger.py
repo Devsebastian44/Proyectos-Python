@@ -9,8 +9,9 @@ except ImportError:
     LOGS_DIR.mkdir(exist_ok=True)
 
 
-def setup_logger(name: str = "app", log_file: str = "app.log",
-                 level=logging.INFO) -> logging.Logger:
+def setup_logger(
+    name: str = "app", log_file: str = "app.log", level=logging.INFO
+) -> logging.Logger:
     """
     Sets up a logger with file and console handlers.
 
@@ -26,7 +27,7 @@ def setup_logger(name: str = "app", log_file: str = "app.log",
     logger.setLevel(level)
 
     if not logger.handlers:
-        msg_fmt = '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+        msg_fmt = "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
         formatter = logging.Formatter(msg_fmt)
 
         # File Handler

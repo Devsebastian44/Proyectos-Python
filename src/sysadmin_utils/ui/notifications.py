@@ -14,12 +14,7 @@ def send_windows_notification(title: str, msg: str, duration: str = "short"):
         print(f"Notification (CLI): {title} - {msg}")
         return
 
-    toast = Notification(
-        app_id="PySysTools",
-        title=title,
-        msg=msg,
-        duration=duration
-    )
+    toast = Notification(app_id="PySysTools", title=title, msg=msg, duration=duration)
     toast.set_audio(audio.Default, loop=False)
     toast.show()
 

@@ -5,22 +5,39 @@ from typing import Dict
 
 # Extension mapping
 EXTENSIONS: Dict[str, str] = {
-    "jpg": "images", "jpeg": "images", "png": "images", "ico": "images",
-    "gif": "images", "svg": "images",
+    "jpg": "images",
+    "jpeg": "images",
+    "png": "images",
+    "ico": "images",
+    "gif": "images",
+    "svg": "images",
     "sql": "sql",
-    "exe": "programs", "msi": "programs",
+    "exe": "programs",
+    "msi": "programs",
     "pdf": "pdf",
-    "xlsx": "excel", "csv": "excel",
-    "rar": "archive", "zip": "archive", "gz": "archive", "tar": "archive",
+    "xlsx": "excel",
+    "csv": "excel",
+    "rar": "archive",
+    "zip": "archive",
+    "gz": "archive",
+    "tar": "archive",
     "docx": "word",
     "torrent": "torrent",
     "txt": "text",
-    "ipynb": "python", "py": "python",
-    "pptx": "powerpoint", "ppt": "powerpoint",
-    "mp3": "audio", "wav": "audio",
-    "mp4": "video", "m3u8": "video", "webm": "video", "ts": "video",
+    "ipynb": "python",
+    "py": "python",
+    "pptx": "powerpoint",
+    "ppt": "powerpoint",
+    "mp3": "audio",
+    "wav": "audio",
+    "mp4": "video",
+    "m3u8": "video",
+    "webm": "video",
+    "ts": "video",
     "json": "json",
-    "css": "web", "js": "web", "html": "web",
+    "css": "web",
+    "js": "web",
+    "html": "web",
     "apk": "apk",
     "sqlite3": "sqlite3",
     "iso": "iso",
@@ -42,7 +59,7 @@ def organize_directory(path: Path, verbose: bool = False):
     for file_path in path.iterdir():
         if file_path.is_file():
             # Get extension without dot
-            extension = file_path.suffix.lower().lstrip('.')
+            extension = file_path.suffix.lower().lstrip(".")
 
             if extension in EXTENSIONS:
                 folder_name = EXTENSIONS[extension]

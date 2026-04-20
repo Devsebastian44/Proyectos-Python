@@ -1,8 +1,8 @@
 import os
 import time
-import psutil
-import pandas as pd
 
+import pandas as pd
+import psutil
 
 UPDATE_DELAY = 1  # Seconds
 
@@ -11,7 +11,7 @@ def get_size(bytes_val: int) -> str:
     """
     Converts bytes to a human-readable format (KB, MB, GB, etc.).
     """
-    for unit in ['', 'K', 'M', 'G', 'T', 'P']:
+    for unit in ["", "K", "M", "G", "T", "P"]:
         if bytes_val < 1024:
             return f"{bytes_val:.2f}{unit}B"
         bytes_val /= 1024
@@ -19,9 +19,13 @@ def get_size(bytes_val: int) -> str:
 
 
 def clear_screen():
-    """Clears the console screen."""
+    """Clears the terminal screen."""
     import subprocess
-    subprocess.run(["cls"] if os.name == "nt" else ["clear"], shell=False)
+
+    if os.name == "nt":
+        subprocess.run(["cls"], shell=False)  # noqa: S603, S607
+    else:
+        subprocess.run(["clear"], shell=False)  # noqa: S603, S607
 
 
 def monitor_traffic(delay: float = 1.0):
@@ -43,14 +47,16 @@ def monitor_traffic(delay: float = 1.0):
                 upload_speed = io_2[iface].bytes_sent - iface_io.bytes_sent
                 download_speed = io_2[iface].bytes_recv - iface_io.bytes_recv
 
-                data.append({
-                    "Interface": iface,
-                    "Download Total": get_size(io_2[iface].bytes_recv),
-                    "Upload Total": get_size(io_2[iface].bytes_sent),
-                    "Upload Speed": f"{get_size(upload_speed / delay)}/s",
-                    "Download Speed": f"{get_size(download_speed / delay)}/s",
-                    "Raw Download": download_speed  # For sorting
-                })
+                data.append(
+                    {
+                        "Interface": iface,
+                        "Download Total": get_size(io_2[iface].bytes_recv),
+                        "Upload Total": get_size(io_2[iface].bytes_sent),
+                        "Upload Speed": f"{get_size(upload_speed / delay)}/s",
+                        "Download Speed": f"{get_size(download_speed / delay)}/s",
+                        "Raw Download": download_speed,  # For sorting
+                    }
+                )
 
             io = io_2
             df = pd.DataFrame(data)

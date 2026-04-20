@@ -1,4 +1,5 @@
 import ftplib  # nosec B402
+import os
 from pathlib import Path
 from typing import List
 
@@ -7,6 +8,7 @@ class FTPClient:
     """
     A simple FTP client for uploading and downloading files.
     """
+
     def __init__(self, host: str, user: str, password: str):
         self.host = host
         self.user = user
@@ -16,7 +18,11 @@ class FTPClient:
     def connect(self):
         """Establishes connection to the FTP server."""
         try:
-            self.ftp = ftplib.FTP(self.host, self.user, self.password)  # nosec B321
+            # ftplib is used for legacy FTP support as required by the tool's purpose.
+            # For secure transfers, SFTP or FTPS should be used.
+            self.ftp = ftplib.FTP(  # noqa: S310, S321
+                self.host, self.user, self.password, timeout=30
+            )
             self.ftp.encoding = "utf-8"
             print(f"Connected to {self.host}")
         except Exception as e:
@@ -77,16 +83,20 @@ class FTPClient:
 
 
 if __name__ == "__main__":
-    # Example usage (Test server credentials from original script)
-    HOST = "ftp.dlptest.com"
-    USER = "dlpuser@dlptest.com"
-    PASS = "SzMf7rTE4pCrf9dV286GuNe4N"
+    # Example usage (Use environment variables for actual credentials)
+    HOST = os.getenv("FTP_HOST", "ftp.example.com")
+    USER = os.getenv("FTP_USER", "user")
+    PASS = os.getenv("FTP_PASS", "")
+
+    if not PASS:
+        print("Skipping FTP test (no password provided).")
+        exit(0)
 
     client = FTPClient(HOST, USER, PASS)
     try:
         client.connect()
         print(client.list_files())
-    except Exception:
-        pass
+    except Exception as e:
+        print(f"Connection error: {e}")
     finally:
         client.close()

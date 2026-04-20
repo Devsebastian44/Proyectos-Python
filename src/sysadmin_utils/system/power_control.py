@@ -1,4 +1,5 @@
 import os
+import shutil
 
 
 def shutdown_system(delay: int = 60):
@@ -7,10 +8,16 @@ def shutdown_system(delay: int = 60):
     """
     print(f"System will shutdown in {delay} seconds.")
     import subprocess
+
+    cmd = shutil.which("shutdown") or "shutdown"
     if os.name == "nt":
-        subprocess.run(["shutdown", "/s", "/t", str(delay)], shell=False)
+        subprocess.run([cmd, "/s", "/t", str(delay)], shell=False)  # noqa: S603, S607
     else:
-        subprocess.run(["sudo", "shutdown", "-h", f"+{delay // 60}"], shell=False)
+        sudo_cmd = shutil.which("sudo") or "sudo"
+        subprocess.run(
+            [sudo_cmd, cmd, "-h", f"+{delay // 60}"],
+            shell=False,  # noqa: S603, S607
+        )
 
 
 def cancel_shutdown():
@@ -19,10 +26,13 @@ def cancel_shutdown():
     """
     print("Canceling scheduled shutdown...")
     import subprocess
+
+    cmd = shutil.which("shutdown") or "shutdown"
     if os.name == "nt":
-        subprocess.run(["shutdown", "/a"], shell=False)
+        subprocess.run([cmd, "/a"], shell=False)  # noqa: S603, S607
     else:
-        subprocess.run(["sudo", "shutdown", "-c"], shell=False)
+        sudo_cmd = shutil.which("sudo") or "sudo"
+        subprocess.run([sudo_cmd, cmd, "-c"], shell=False)  # noqa: S603, S607
 
 
 if __name__ == "__main__":

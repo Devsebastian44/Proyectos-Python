@@ -18,17 +18,17 @@ VERSION = "1.0.0"
 
 # Color codes for terminal output
 class Colors:
-    GREEN = '\033[32m'
-    YELLOW = '\033[33m'
-    BLUE = '\033[34m'
-    MAGENTA = '\033[35m'
-    CYAN = '\033[36m'
-    WHITE = '\033[37m'
-    RESET = '\033[39m'
-    HEADER = '\033[95m'
-    IMPORTANT = '\33[35m'
-    NOTICE = '\033[33m'
-    WARNING = '\033[93m'
-    RED = '\033[91m'
-    END = '\033[0m'
-    UNDERLINE = '\033[4m'
+    GREEN = "\033[32m"
+    YELLOW = "\033[33m"
+    BLUE = "\033[34m"
+    MAGENTA = "\033[35m"
+    CYAN = "\033[36m"
+    WHITE = "\033[37m"
+    RESET = "\033[39m"
+    HEADER = "\033[95m"
+    IMPORTANT = "\33[35m"
+    NOTICE = "\033[33m"
+    WARNING = "\033[93m"
+    RED = "\033[91m"
+    END = "\033[0m"
+    UNDERLINE = "\033[4m"

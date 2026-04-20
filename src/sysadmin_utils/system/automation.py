@@ -4,7 +4,11 @@ import os
 def clear_screen():
     """Clears the terminal screen."""
     import subprocess
-    subprocess.run(["cls"] if os.name == "nt" else ["clear"], shell=False)
+
+    if os.name == "nt":
+        subprocess.run(["cmd", "/c", "cls"], shell=False)  # noqa: S603, S607
+    else:
+        subprocess.run(["clear"], shell=False)  # noqa: S603, S607
 
 
 def interactive_menu():
