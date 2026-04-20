@@ -1,6 +1,8 @@
 import os
 import shutil
 
+# ruff: noqa: S603, S607
+
 
 def shutdown_system(delay: int = 60):
     """
@@ -14,9 +16,9 @@ def shutdown_system(delay: int = 60):
         subprocess.run([cmd, "/s", "/t", str(delay)], shell=False)  # noqa: S603, S607
     else:
         sudo_cmd = shutil.which("sudo") or "sudo"
-        subprocess.run(
+        subprocess.run(  # noqa: S603, S607
             [sudo_cmd, cmd, "-h", f"+{delay // 60}"],
-            shell=False,  # noqa: S603, S607
+            shell=False,
         )
 
 
