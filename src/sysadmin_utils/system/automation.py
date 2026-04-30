@@ -1,5 +1,25 @@
 import os
 
+import pyautogui
+
+
+def get_mouse_position():
+    """
+    Returns the current mouse (x, y) coordinates.
+    Used for automation tasks and coordinate tracking.
+    """
+    return pyautogui.position()
+
+
+def move_mouse_to(x: int, y: int, duration: float = 0.25):
+    """
+    Moves the mouse to the specified (x, y) coordinates.
+    :param x: Target X coordinate
+    :param y: Target Y coordinate
+    :param duration: Time in seconds to perform the move
+    """
+    pyautogui.moveTo(x, y, duration=duration)
+
 
 def clear_screen():
     """Clears the terminal screen."""
