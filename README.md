@@ -4,7 +4,7 @@
 ![License](https://img.shields.io/badge/License-MIT-22c55e?style=flat)
 ![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20Linux-0078D4?style=flat&logo=windows&logoColor=white)
 ![DevSecOps](https://img.shields.io/badge/DevSecOps-Ready-f97316?style=flat&logo=shieldsdotio&logoColor=white)
-![Code Style](https://img.shields.io/badge/Code%20Style-flake8-7c3aed?style=flat)
+![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-CI%2FCD-2088FF?style=flat&logo=github-actions&logoColor=white)
 
 ---
 
@@ -16,7 +16,7 @@ El proyecto cubre cuatro dominios operativos principales: monitoreo del sistema,
 
 Este proyecto sigue un enfoque de **Security by Design**: las herramientas de análisis y escaneo han sido diseñadas para uso defensivo y auditivo en infraestructuras propias o con autorización explícita.
 
-> ⚠️ **Uso Responsable:** Las capacidades de análisis de seguridad incluidas en esta suite (escaneo de malware, análisis de hash, monitoreo de red) deben utilizarse únicamente en sistemas bajo propiedad o con autorización escrita del propietario. El autor no asume responsabilidad por usos no autorizados o ilegales de estas herramientas.
+> ⚠️ **Uso Responsable:** Este proyecto tiene fines educativos y éticos de ciberseguridad únicamente. Las capacidades de análisis de seguridad incluidas en esta suite (escaneo de malware, análisis de hash, monitoreo de red) deben utilizarse únicamente en sistemas bajo propiedad o con autorización escrita del propietario. El autor no asume responsabilidad por usos no autorizados o ilegales de estas herramientas.
 
 ---
 
@@ -138,6 +138,18 @@ info = get_system_info()
 print(info)
 ```
 
+### 🧪 Ejecución de Tests
+
+PySysTools usa `pytest` para la suite de pruebas funcionales, configuradas para ejecutarse sin endpoints externos y sin necesidad de credenciales reales.
+
+```bash
+# Ejecutar todas las pruebas
+pytest tests/
+
+# Ejecutar con reporte de cobertura
+pytest tests/ --cov=src
+```
+
 ---
 
 ## 📁 Project Structure
@@ -201,6 +213,19 @@ PySysTools incorpora consideraciones de seguridad en múltiples niveles:
 - [ ] Publicación del paquete en PyPI
 - [ ] Cobertura de tests al 80%+ documentada en pipeline
 - [ ] Soporte para Docker y despliegue containerizado
+
+---
+
+## 🤝 Contributing
+
+¡Las contribuciones son bienvenidas para hacer de PySysTools una herramienta más robusta!
+
+1. Haz un **Fork** del proyecto.
+2. Crea tu rama para la nueva funcionalidad (`git checkout -b feature/AmazingFeature`).
+3. Ejecuta los tests localmente para asegurar que nada se rompe (`pytest tests/`).
+4. Realiza tus cambios y haz commit usando Conventional Commits (`git commit -m 'feat: add some AmazingFeature'`).
+5. Sube tu rama (`git push origin feature/AmazingFeature`).
+6. Abre un **Pull Request** y nuestro CI (GitHub Actions) validará tu código.
 
 ---
 
