@@ -5,7 +5,6 @@
 ![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20Linux-0078D4?style=flat&logo=windows&logoColor=white)
 ![DevSecOps](https://img.shields.io/badge/DevSecOps-Ready-f97316?style=flat&logo=shieldsdotio&logoColor=white)
 ![Code Style](https://img.shields.io/badge/Code%20Style-flake8-7c3aed?style=flat)
-![CI/CD](https://img.shields.io/badge/CI%2FCD-GitLab%20Pipelines-FC6D26?style=flat&logo=gitlab&logoColor=white)
 
 ---
 
@@ -52,7 +51,6 @@ Este proyecto sigue un enfoque de **Security by Design**: las herramientas de an
 | Seguridad estática | bandit | Análisis SAST |
 | Testing | pytest | Pruebas unitarias e integración |
 | Empaquetado | setuptools | Instalación como paquete Python |
-| CI/CD | GitLab Pipelines | Automatización de builds y tests |
 | Diagramas | Mermaid | Documentación de arquitectura |
 
 ---
@@ -70,7 +68,7 @@ Este proyecto sigue un enfoque de **Security by Design**: las herramientas de an
 
 ```bash
 # 1. Clonar el repositorio
-git clone https://gitlab.com/group-programming-lab/PySysTools.git
+git clone https://github.com/devsebastian44/PySysTools.git
 cd PySysTools
 
 # 2. Crear entorno virtual (recomendado)
@@ -171,7 +169,7 @@ PySysTools/
 └── setup.py                     # Configuración de empaquetado con setuptools
 ```
 
-> **Nota:** El directorio `tests/` con la suite completa de pruebas unitarias e integración, así como el archivo `.gitlab-ci.yml` del pipeline CI/CD, están disponibles en el repositorio completo de GitLab.
+> **Nota:** El directorio `tests/` contiene la suite completa de pruebas unitarias e integración para validar el correcto funcionamiento de los módulos.
 
 ---
 
@@ -188,29 +186,6 @@ PySysTools incorpora consideraciones de seguridad en múltiples niveles:
 **Principio de menor privilegio:** Se recomienda ejecutar la herramienta con los permisos mínimos necesarios para cada tarea específica.
 
 **Contexto ético de uso:** Esta suite está diseñada para administración legítima de infraestructura propia. Cualquier uso sobre sistemas de terceros sin autorización escrita constituye una violación ética y potencialmente legal.
-
----
-
-## 🌐 Repository Architecture
-
-Este proyecto sigue una arquitectura de repositorio distribuido optimizada para flujos DevSecOps:
-
-| Plataforma | Rol | Contenido |
-|---|---|---|
-| **GitLab** | Laboratorio completo + CI/CD | Código fuente íntegro, tests, pipeline, ramas de desarrollo |
-| **GitHub** | Portafolio y presentación | Versión optimizada, documentación, demos públicas |
-
-El desarrollo principal ocurre en GitLab, donde reside el ecosistema completo con pipeline de integración continua (linting con `flake8`, pruebas con `pytest`, análisis SAST con `bandit`). GitHub actúa como vitrina profesional del proyecto.
-
-La sincronización entre ambas plataformas se gestiona mediante el script `publish_public.ps1`, que exporta una versión limpia y optimizada hacia el repositorio público de GitHub.
-
----
-
-## 🔗 Full Source Code
-
-El código fuente completo, incluyendo todos los módulos, suite de tests y pipeline CI/CD, está disponible en:
-
-👉 **[https://gitlab.com/group-programming-lab/PySysTools](https://gitlab.com/group-programming-lab/PySysTools)**
 
 ---
 
@@ -244,7 +219,6 @@ Consulta el archivo [LICENSE](./LICENSE) para más detalles.
 Desarrollador de software con enfoque en automatización de sistemas, seguridad defensiva y herramientas DevSecOps. Apasionado por la construcción de utilidades robustas para administración de infraestructura empresarial.
 
 - 🐙 GitHub: [@devsebastian44](https://github.com/devsebastian44)
-- 🦊 GitLab: [@group-programming-lab](https://gitlab.com/group-programming-lab)
 
 ---
 
