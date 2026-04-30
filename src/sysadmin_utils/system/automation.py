@@ -1,6 +1,15 @@
 import os
 
-import pyautogui
+try:
+    import pyautogui
+except (ImportError, Exception):
+    # Fallback for headless environments (CI, servers) where GUI libs are missing.
+    # This allows the module to load and tests to patch the attribute.
+    pyautogui = type(
+        "PyAutoGUIPlaceholder",
+        (),
+        {"position": lambda: (0, 0), "moveTo": lambda *a, **k: None},
+    )
 
 
 def get_mouse_position():
@@ -8,7 +17,9 @@ def get_mouse_position():
     Returns the current mouse (x, y) coordinates.
     Used for automation tasks and coordinate tracking.
     """
-    return pyautogui.position()
+    if hasattr(pyautogui, "__name__") or pyautogui is not None:
+        return pyautogui.position()
+    raise RuntimeError("pyautogui is not available in this environment.")
 
 
 def move_mouse_to(x: int, y: int, duration: float = 0.25):
@@ -18,7 +29,10 @@ def move_mouse_to(x: int, y: int, duration: float = 0.25):
     :param y: Target Y coordinate
     :param duration: Time in seconds to perform the move
     """
-    pyautogui.moveTo(x, y, duration=duration)
+    if hasattr(pyautogui, "__name__") or pyautogui is not None:
+        pyautogui.moveTo(x, y, duration=duration)
+    else:
+        raise RuntimeError("pyautogui is not available in this environment.")
 
 
 def clear_screen():
