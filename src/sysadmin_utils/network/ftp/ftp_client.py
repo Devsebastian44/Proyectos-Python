@@ -20,7 +20,7 @@ class FTPClient:
         try:
             # ftplib is used for legacy FTP support as required by the tool's purpose.
             # For secure transfers, SFTP or FTPS should be used.
-            self.ftp = ftplib.FTP(  # noqa: S310, S321
+            self.ftp = ftplib.FTP(  # nosec B310, B321 # noqa: S310, S321
                 self.host, self.user, self.password, timeout=30
             )
             self.ftp.encoding = "utf-8"

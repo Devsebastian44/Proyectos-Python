@@ -13,7 +13,7 @@ def download_file(url: str, filename: str):
         raise ValueError(f"Unsupported URL scheme: {parsed_url.scheme}")
 
     try:
-        urllib.request.urlretrieve(url, filename)  # noqa: S310
+        urllib.request.urlretrieve(url, filename)  # nosec B310 # noqa: S310
         print(f"Saved to {filename}")
     except Exception as e:
         print(f"Error downloading file: {e}")
